@@ -24,7 +24,6 @@ object LFix {
   def Algebra[F[_]] : Algebra[F, LFix[F]] = new Algebra[F, LFix[F]](algebra _)
 }
 
-
 ///////////////////////////////////////////////////
 //
 //  CoAlgebra

@@ -1,4 +1,5 @@
 import CoSlide.utils._
+import cats.data.NonEmptyList
 
 package object CoSlide {
   type VTextF[+S, +T] = Vector[TextF[S,T]]
@@ -9,6 +10,6 @@ package object CoSlide {
   type PageOutF[+A] = Either[TextOut, PageF[A]]
   type PageOut = LFix[PageOutF]
 
-  type TableOfContents[+T] = TableOfContentsF[Vector, T]
-  type TableOfContentsHole[+T] = TableOfContentsF[VectorZipper, T]
+  type VTableOfContentsF[+T, +R] = Vector[TableOfContentsF[T,R]]
+  type VTableOfContents[T] = LFix[VTableOfContentsF[T, ?]]
 }

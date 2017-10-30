@@ -1,15 +1,14 @@
 package CoSlide.utils
 
 import cats.data.NonEmptyList
+import cats.functor.Bifunctor
 import cats.~>
 
-final case class VectorZipper[+A](left : Vector[A], focus : A, right : Vector[A]) {
-  def map[B](f : A => B) : VectorZipper[B] =
-    VectorZipper(left.map(f), f(focus), right.map(f))
+final case class VectorZipper[+A, +B](left : Vector[A], focus : B, right : Vector[A])
 
-  def toVector : Vector[A] = left ++ (focus +: right)
-}
-
-object VectorZ extends (VectorZipper ~> Vector) {
-  def apply[A](fa: VectorZipper[A]) : Vector[A] = fa.toVector
+object VectorZipper {
+  implicit val functorVectorZipper = new Bifunctor[VectorZipper] {
+    def bimap[A, B, C, D](fab: VectorZipper[A, B])(f: A => C, g: B => D) : VectorZipper[C,D] =
+      VectorZipper(fab.left.map(f), g(fab.focus), fab.right.map(f))
+  }
 }

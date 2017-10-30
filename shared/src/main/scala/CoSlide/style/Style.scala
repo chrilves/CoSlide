@@ -12,7 +12,7 @@ object TextIn {
 }
 
 final case class TextOut(color : Option[TextOut.Color] = None,
-                         fontSize : Option[Int] = None,
+                         fontSize : Option[Double] = None,
                          bold : Option[Boolean] = None,
                          italic : Option[Boolean] = None,
                          code : Option[Boolean] = None
@@ -22,7 +22,7 @@ object TextOut {
 
   def color(c : Color) = TextOut(color = Some(c))
   def color(r :Int, g :Int, b:Int) = TextOut(color = Some(Color(r,g,b)))
-  def fontSize(i : Int) = TextOut(fontSize = Some(i))
+  def fontSize(i : Double) = TextOut(fontSize = Some(i))
   val bold = TextOut(bold = Some(true))
   val italic = TextOut(italic = Some(true))
   val code = TextOut(code = Some(true))
@@ -51,4 +51,5 @@ object Horizontal {
 sealed abstract class Vertical
 object Vertical {
   final case object Normal extends Vertical
+  final case object Bullets extends Vertical
 }

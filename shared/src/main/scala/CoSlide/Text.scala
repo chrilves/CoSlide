@@ -5,7 +5,6 @@ import cats.data.NonEmptyList
 import cats.functor.Bifunctor
 
 /////////////////////////////////////////////////
-//
 //  Texte
 //
 
@@ -38,10 +37,8 @@ trait Text[-S, T] extends Monoid[T] {
 }
 
 /////////////////////////////////////////////////
-//
 //  Slide
 //
-
 
 sealed abstract class SlideF[+T, +S]
 object SlideF {
@@ -79,4 +76,14 @@ trait Slide[-T, P] extends Monoid[P] {
   }
 
   final def Algebra[T2 <: T] = new Algebra[SlideF[T2,?], P](algebra _)
+}
+
+
+////////////////////////////////////////////////////////////////////////////
+// Table Of Contents
+//
+
+final case class  TableOfContentsF[+T, +R](title : T, subSections : R) {
+  def bimap[U, S](f : T => U, g : R => S) : TableOfContentsF[U, S] =
+    TableOfContentsF[U,S](f(title), g(subSections))
 }
