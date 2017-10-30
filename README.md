@@ -1,0 +1,2 @@
+# CoSlide
+ScalaJS Presentation Framework
