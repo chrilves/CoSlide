@@ -2,7 +2,7 @@ package ScalaIO.js
 
 import java.net.URL
 
-import CoSlide.JS.{TextHTML, Utils}
+import CoSlide.JS.{TextWeb, Utils}
 import CoSlide.style.TextOut
 import org.scalajs.dom
 import cats.syntax.monoid._

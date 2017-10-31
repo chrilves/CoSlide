@@ -17,6 +17,8 @@ object Algebra {
 final case class LFix[F[_]](out : F[LFix[F]]) {
   def fold[A](implicit F : Functor[F], alg : Algebra[F,A]) : A =
     alg.fold(out.map(_.fold[A](F,alg)))
+
+  implicit def Algebra : Algebra[F, LFix[F]] = LFix.Algebra[F]
 }
 
 object LFix {
@@ -59,6 +61,6 @@ object GFix {
 //  Inject
 //
 
-trait Inject[A, B] {
+trait Inject[A, +B] {
   def inject(a : A) : B
 }

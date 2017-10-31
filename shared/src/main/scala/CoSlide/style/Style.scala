@@ -43,13 +43,8 @@ object TextOut {
   }
 }
 
-sealed abstract class Horizontal
-object Horizontal {
-  final case object Normal extends Horizontal
-}
-
-sealed abstract class Vertical
-object Vertical {
-  final case object Normal extends Vertical
-  final case object Bullets extends Vertical
+sealed abstract class VerticalSequence
+object VecticalSequence {
+  final case object Normal extends VerticalSequence
+  final case object Bullets extends VerticalSequence
 }
